@@ -51,13 +51,9 @@ def request_api(dim_name="landingPagePlusQueryString",
                 metrics_name="sessions"):
     request_api = RunReportRequest(
         property=f"properties/{property_id}",
-        dimensions=[
-            Dimension(dim_name="landingPagePlusQueryString")
-            ],
-            metrics=[
-                Metric(metrics_name="sessions")
-            ],
-            date_ranges=[DateRange(start_date=starting_date, end_date=ending_date)],
+        dimensions=[ Dimension(name = dim_name) ],
+        metrics=[ Metric(name = metrics_name) ],
+        date_ranges=[DateRange(start_date=starting_date, end_date=ending_date)],
         )
     response = client.run_report(request_api)
     df_ga4_resp = query_data(response)
